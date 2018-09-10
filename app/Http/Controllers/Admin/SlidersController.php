@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Address;
+use App\Slider;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class AddressController extends Controller
+class SlidersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class AddressController extends Controller
      */
     public function index()
     {
-        //
+        return "Hello Slider";
     }
 
     /**
@@ -42,10 +42,10 @@ class AddressController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Address  $address
+     * @param  \App\Slider  $slider
      * @return \Illuminate\Http\Response
      */
-    public function show(Address $address)
+    public function show(Slider $slider)
     {
         //
     }
@@ -53,10 +53,10 @@ class AddressController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Address  $address
+     * @param  \App\Slider  $slider
      * @return \Illuminate\Http\Response
      */
-    public function edit(Address $address)
+    public function edit(Slider $slider)
     {
         //
     }
@@ -65,10 +65,10 @@ class AddressController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Address  $address
+     * @param  \App\Slider  $slider
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Address $address)
+    public function update(Request $request, Slider $slider)
     {
         //
     }
@@ -76,10 +76,10 @@ class AddressController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Address  $address
+     * @param  \App\Slider  $slider
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Address $address)
+    public function destroy(Slider $slider)
     {
         //
     }

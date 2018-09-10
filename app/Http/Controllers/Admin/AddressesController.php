@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Slider;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Address;
+use Illuminate\Http\Request;
 
-class SliderController extends Controller
+class AddressesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class SliderController extends Controller
      */
     public function index()
     {
-        return "Hello Slider";
+        //
     }
 
     /**
@@ -42,10 +42,10 @@ class SliderController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Slider  $slider
+     * @param  \App\Address  $address
      * @return \Illuminate\Http\Response
      */
-    public function show(Slider $slider)
+    public function show(Address $address)
     {
         //
     }
@@ -53,10 +53,10 @@ class SliderController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Slider  $slider
+     * @param  \App\Address  $address
      * @return \Illuminate\Http\Response
      */
-    public function edit(Slider $slider)
+    public function edit(Address $address)
     {
         //
     }
@@ -65,10 +65,10 @@ class SliderController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Slider  $slider
+     * @param  \App\Address  $address
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Slider $slider)
+    public function update(Request $request, Address $address)
     {
         //
     }
@@ -76,10 +76,10 @@ class SliderController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Slider  $slider
+     * @param  \App\Address  $address
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Slider $slider)
+    public function destroy(Address $address)
     {
         //
     }
