@@ -20,7 +20,7 @@ class CreateProfessionalsTable extends Migration
             $table->string('siret', 100);
             $table->string('tva_intracommunity');
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
