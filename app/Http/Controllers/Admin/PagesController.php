@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Newsletter;
+use App\Page;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class NewsletterController extends Controller
+class PagesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -42,10 +42,10 @@ class NewsletterController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Newsletter  $newsletter
+     * @param  \App\Page  $page
      * @return \Illuminate\Http\Response
      */
-    public function show(Newsletter $newsletter)
+    public function show(Page $page)
     {
         //
     }
@@ -53,10 +53,10 @@ class NewsletterController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Newsletter  $newsletter
+     * @param  \App\Page  $page
      * @return \Illuminate\Http\Response
      */
-    public function edit(Newsletter $newsletter)
+    public function edit(Page $page)
     {
         //
     }
@@ -65,10 +65,10 @@ class NewsletterController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Newsletter  $newsletter
+     * @param  \App\Page  $page
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Newsletter $newsletter)
+    public function update(Request $request, Page $page)
     {
         //
     }
@@ -76,10 +76,10 @@ class NewsletterController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Newsletter  $newsletter
+     * @param  \App\Page  $page
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Newsletter $newsletter)
+    public function destroy(Page $page)
     {
         //
     }
