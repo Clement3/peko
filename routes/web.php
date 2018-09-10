@@ -23,11 +23,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::prefix('admin')->namespace('Admin')->middleware('IsAdmin')->group(function () {
     Route::get('/dashboard', 'DashboardController@index');
 
-    Route::prefix('users')->group(function () {
-        Route::get('/', 'UsersController@index');
-        Route::get('/{user}', 'UsersController@show');
-        Route::get('/{user}/edit', 'UsersController@edit');
-        Route::patch('/{user}/update', 'UsersController@update');
-        Route::get('/{user}/delete', 'UsersController@delete');
-    });
+    Route::resources([
+        'users' => 'UsersController',
+        'products' => 'ProductsController',
+        'sliders' => 'SlidersController',
+        'pages' => 'PagesController'
+    ]);
 });

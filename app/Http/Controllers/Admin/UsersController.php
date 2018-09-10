@@ -17,7 +17,9 @@ class UsersController extends Controller
 
     public function show(User $user)
     {
-        return $user;
+        $users = User::All('id, name, email');
+
+        return view('admin/users/show', ['users' => $users]);
     }
 
     public function edit(User $user)
