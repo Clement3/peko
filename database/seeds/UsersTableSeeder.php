@@ -22,7 +22,7 @@ class UsersTableSeeder extends Seeder
             'role_id' => 2
         ]);
 
-        for ($i=1; $i<=10; $i++) {
+        for ($i = 1; $i <= 10; $i++) {
             DB::table('users')->insert([
                 'name' => 'Client '.$i,
                 'email' => 'client' .$i . '@client.com',
