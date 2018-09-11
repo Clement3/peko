@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class SlidersTableSeeder extends Seeder
 {
@@ -11,6 +12,13 @@ class SlidersTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        for ($i = 1; $i <= 4; $i++) {
+            DB::table('sliders')->insert([
+                'picture' => "image.jpg",
+                'title' => "Sliders ".$i,
+                'body' => "Lorem ipsum",
+                'created_at' => Date('Y-m-d H:i:s')
+            ]);  
+        }    
     }
 }

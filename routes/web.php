@@ -16,8 +16,24 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::prefix('admin')->namespace('Admin')->middleware('IsAdmin')->group(function () {
-    Route::get('/dashboard', 'DashboardController@index');
+/**
+ * Routes pour l'administration.
+ * Requier le rôle "admin" pour accéder à ces routes.
+ * Prefix: /admin
+ * Namespace: App\Http\Controllers\Admin;
+ * Middleware: IsAdmin
+ * Name:: admin
+ */
+Route::prefix('admin')
+    ->namespace('Admin')
+    ->middleware('IsAdmin')
+    ->name('admin.')
+    ->group(function () {
+
+    Route::get('/', 'DashboardController@index')->name('dashboard');
+
+    Route::get('/parameters', 'ParametersController@index');
+    Route::patch('/parameters', 'ParametersController@update');
 
     Route::resources([
         'users' => 'UsersController',
