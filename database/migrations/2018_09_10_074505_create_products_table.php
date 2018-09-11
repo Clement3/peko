@@ -22,6 +22,7 @@ class CreateProductsTable extends Migration
             $table->float('price');
             $table->text('body');
             $table->boolean('is_active')->default(true);
+            $table->string('picture')->nullable();
             $table->timestamps();
 
             $table->foreign('variety_id')->references('id')->on('varieties');
