@@ -17,22 +17,22 @@ class UsersController extends Controller
 
     public function show(User $user)
     {
-        return $user;
+        return view('admin/users/show', ['user' => $user]);
     }
 
     public function edit(User $user)
     {
-        return $user;
+        return view('admin/users/edit', ['user' => $user]);
     }
 
     public function update(User $user)
     {
-        return $user;
+        return view('admin/users/update', ['user' => $user]);
     }
 
     public function delete(User $user)
     {
-        return $user;
+        return view('admin/users/delete', ['user' => $user]);
     }
 
 }
