@@ -13,4 +13,8 @@ class TestController extends Controller
 
         return $user->role->slug;
     }
+
+    public function testGit(){
+        return "C'est bon git remarche";
+    }
 }
