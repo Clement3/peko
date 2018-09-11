@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Variety;
+use App\Category;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -15,7 +17,9 @@ class VarietiesController extends Controller
      */
     public function index()
     {
-        //
+        $varieties = Varietes::paginate(10);
+
+        return view('admin/varieties/index', ['varieties' => $varieties]);
     }
 
     /**
@@ -25,7 +29,7 @@ class VarietiesController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin/varieties/create', ['varieties' => $varieties]);
     }
 
     /**
@@ -47,7 +51,7 @@ class VarietiesController extends Controller
      */
     public function show(Variety $variety)
     {
-        //
+        return view('admin/varieties/show', ['varieties' => $varieties]);
     }
 
     /**
@@ -58,7 +62,10 @@ class VarietiesController extends Controller
      */
     public function edit(Variety $variety)
     {
-        //
+        return view('admin/varieties/edit', [
+            'varieties' => $varieties,
+            'categories' => Category::all()
+            ]);
     }
 
     /**
@@ -70,7 +77,7 @@ class VarietiesController extends Controller
      */
     public function update(Request $request, Variety $variety)
     {
-        //
+        return view('admin/varieties/update', ['varieties' => $varieties]);
     }
 
     /**
@@ -81,6 +88,8 @@ class VarietiesController extends Controller
      */
     public function destroy(Variety $variety)
     {
-        //
+        $variety->delete();
+
+        return redirect()->route('admin.varieties.index');
     }
 }

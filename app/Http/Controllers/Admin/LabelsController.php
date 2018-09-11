@@ -15,7 +15,9 @@ class LabelsController extends Controller
      */
     public function index()
     {
-        //
+        $labels = Label::paginate(10);
+
+        return view('admin/labels/index', ['labels' => $labels]);
     }
 
     /**
@@ -25,7 +27,8 @@ class LabelsController extends Controller
      */
     public function create()
     {
-        //
+       
+        return view('admin/labels/create', ['labels' => $labels]);
     }
 
     /**
@@ -36,20 +39,10 @@ class LabelsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Label  $label
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Label $label)
-    {
-        //
-    }
-
+   
     /**
      * Show the form for editing the specified resource.
      *
@@ -58,7 +51,7 @@ class LabelsController extends Controller
      */
     public function edit(Label $label)
     {
-        //
+        return view('admin/labels/edit', ['labels' => $labels]);
     }
 
     /**
@@ -70,7 +63,7 @@ class LabelsController extends Controller
      */
     public function update(Request $request, Label $label)
     {
-        //
+        return view('admin/labels/update', ['labels' => $labels]);
     }
 
     /**
@@ -81,6 +74,8 @@ class LabelsController extends Controller
      */
     public function destroy(Label $label)
     {
-        //
+        $label->delete();
+
+        return redirect()->route('admin.labels.index');
     }
 }
