@@ -19,7 +19,6 @@ class CreateVarietiesTable extends Migration
             $table->string('slug')->unique();
             $table->string('name', 60);
             $table->float('stock');
-            $table->timestamps();
         });
     }
 
