@@ -13,9 +13,15 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                {{ $user->email }}  
+
+                    @foreach ($pages as $page)
+                        {{ $page->title }}
+                        {{ $page->body }}
+                    @endforeach 
+
+                    {{ $users->links() }}
                 </div>
-            </div>  
+            </div>
         </div>
     </div>
 </div>

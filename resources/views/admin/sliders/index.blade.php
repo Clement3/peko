@@ -13,9 +13,14 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                {{ $user->email }}  
+
+                    @foreach ($sliders as $slider)
+                        {{ $slider->picture_url }}
+                        {{ $slider->title }}
+                        {{ $slider->body }}
+                    @endforeach 
                 </div>
-            </div>  
+            </div>
         </div>
     </div>
 </div>

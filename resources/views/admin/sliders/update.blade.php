@@ -13,7 +13,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                {{ $user->email }}  
+                 
                 </div>
             </div>  
         </div>
