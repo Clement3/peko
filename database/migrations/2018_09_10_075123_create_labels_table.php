@@ -18,7 +18,7 @@ class CreateLabelsTable extends Migration
             $table->unsignedInteger('variety_id');
             $table->string('name');
             $table->text('body');
-            $table->text('repice');
+            $table->text('recipe');
             $table->string('picture');
             $table->timestamps();
 

@@ -15,9 +15,9 @@ class NewslettersController extends Controller
      */
     public function index()
     {
-        $newsletters = Newsletter::all();
-
-        return view('admin/newsletters/index', $newsletters);
+        $newsletters = Newsletter::paginate(10);
+        
+        return view('admin/newsletters/index', ['newsletters' => $newsletters]);
     }
 
     /**
