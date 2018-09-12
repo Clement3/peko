@@ -22,7 +22,7 @@ class SlidersController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
+     * @param  \App\Slider  $slider
      * @return \Illuminate\Http\Response
      */
     public function create()
@@ -38,7 +38,31 @@ class SlidersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required|string|max:191',
+            'body' => 'required|string|max:200',
+            'active' => 'required|boolean'
+        ]);
+
+        Slider::create([
+            'title' => $request->input('title'),
+            'body' => $request->input('body'),
+            'picture' => 'tgg-hybyyb'
+        ]);
+
+        return redirect()->route('admin.sliders.index')
+            ->with('success', 'Vous avez bien enregistré un nouveau slider');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Slider  $slider
+     * @return \Illuminate\Http\Response
+     */    
+    public function show(Slider $slider)
+    {
+        return view('admin/sliders/show', ['slider' => $slider]);
     }
 
     /**
@@ -49,7 +73,9 @@ class SlidersController extends Controller
      */
     public function edit(Slider $slider)
     {
-        //
+        return view('admin/sliders/edit', [
+            'slider' => $slider,
+        ]);
     }
 
     /**
@@ -61,7 +87,18 @@ class SlidersController extends Controller
      */
     public function update(Request $request, Slider $slider)
     {
-        //
+        $request->validate([
+            'title' => 'required|string|max:191',
+            'body' => 'required|string|max:200',
+            'active' => 'required|boolean'
+        ]);
+
+        $user->update([
+            'title' => $request->input('title'),
+            'body' => $request->input('body'),
+            'is_active' => $request->input('active')
+        ]);
+        return redirect()->route('admin.sliders.show', ['slider' => $slider]);
     }
 
     /**
@@ -71,7 +108,12 @@ class SlidersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Slider $slider)
-    {
-        //
-    }
+    
+        {
+            $slider->delete();
+    
+            return redirect()->route('admin.sliders.index')
+                ->with('success', 'Le slider a bien été supprimé.');
+        }
+    
 }
