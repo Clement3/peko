@@ -22,13 +22,13 @@ class LabelsController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
+     *@param  \App\Label  $label
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
        
-        return view('admin/labels/create', ['labels' => $labels]);
+        return view('admin/labels/create');
     }
 
     /**
@@ -39,10 +39,26 @@ class LabelsController extends Controller
      */
     public function store(Request $request)
     {
-       
+        {
+            $request->validate([
+                'name' => 'required|string|max:191',
+                'body' => 'required|string|max:200',
+                'recipe' => 'required|string|max:255',
+                'picture' => 'required|string|max:100'
+            ]);
+    
+            Slider::create([
+                'name' => $request->input('body'),
+                'body' => $request->input('body'),
+                'recipe' => $request->input('recipe'),
+                'picture' => $request->input('picture')
+            ]);
+    
+            return redirect()->route('admin.labels.index')
+                ->with('success', 'Vous avez bien enregistré un nouveau label');
+        }
     }
 
-   
     /**
      * Show the form for editing the specified resource.
      *
@@ -51,7 +67,9 @@ class LabelsController extends Controller
      */
     public function edit(Label $label)
     {
-        return view('admin/labels/edit', ['labels' => $labels]);
+        return view('admin/labels/edit', [
+            'label' => $label
+        ]);
     }
 
     /**
@@ -63,7 +81,21 @@ class LabelsController extends Controller
      */
     public function update(Request $request, Label $label)
     {
-        return view('admin/labels/update', ['labels' => $labels]);
+        $request->validate([
+            'name' => 'required|string|max:191',
+            'body' => 'required|string|max:200',
+            'recipe' => 'required|string|max:255',
+            'active' => 'required|boolean'
+        ]);
+
+        $user->update([
+            'title' => $request->input('title'),
+            'body' => $request->input('body'),
+            'recipe' => $request->input('recipe'),
+            'is_active' => $request->input('active')
+        ]);
+
+        return view('admin/labels/index', ['label' => $label]);
     }
 
     /**
@@ -76,6 +108,7 @@ class LabelsController extends Controller
     {
         $label->delete();
 
-        return redirect()->route('admin.labels.index');
+        return redirect()->route('admin.labels.index')
+            ->with('success', 'Le label a bien été supprimé.');;
     }
 }
