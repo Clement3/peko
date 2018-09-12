@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'firstname', 'lastname', 'name', 'email', 'password', 'is_active'
+        'firstname', 'lastname', 'email', 'password', 'is_active', 'phone', 'role_id'
     ];
 
     /**
@@ -36,8 +36,19 @@ class User extends Authenticatable
         return $this->belongsTo('App\Role');
     }
 
+    /**
+     * Récupère l'addresse de l'utilisateur
+     */
+    public function address()
+    {
+        return $this->hasOne('App\Address');
+    }
+
+    /**
+     * Affiche le prénom et le nom de famille
+     */
     public function fullname()
     {
-        return $this->firstname . ' ' . $this->lastname;
+        return "{$this->firstname} {$this->lastname}";
     }
 }
