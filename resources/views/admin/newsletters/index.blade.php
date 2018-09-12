@@ -46,4 +46,5 @@
 </div>
 
 {{ $newsletters->links() }}
+
 @endsection
