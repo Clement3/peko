@@ -32,10 +32,10 @@ Route::prefix('admin')
 
     Route::get('/', 'DashboardController@index')->name('dashboard');
 
-    Route::get('/parameters', 'ParametersController@index');
-    Route::patch('/parameters', 'ParametersController@update');
+    Route::get('/parameters', 'ParametersController@index')->name('parameters.index');
+    Route::patch('/parameters', 'ParametersController@update')->name('parameters.index');
 
-    Route::get('/statistics', 'StatisticsController@index');
+    Route::get('/statistics', 'StatisticsController@index')->name('statistics.index');
 
     Route::resources([
         'users' => 'UsersController',
