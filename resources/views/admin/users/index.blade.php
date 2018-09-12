@@ -6,6 +6,7 @@
 </div>
 
 @include('partials/_alert')
+
 <div class="table-responsive">
     <table class="table">
         <thead>
@@ -14,7 +15,8 @@
                 <th scope="col">Nom complet</th>
                 <th scope="col">E-mail</th>
                 <th scope="col">Actif</th>
-                <th scope="col"></th>
+                <th scope="col">Role</th>
+                <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -30,14 +32,21 @@
                     <span class="badge badge-warning">Non</span>
                     @endif
                 </td>
+                <td>{{ $user->role->name }}</td>
                 <td>
-                    <button type="button" 
-                            class="btn btn-primary btn-sm" 
-                            data-toggle="modal" 
-                            data-target="#edit"
-                            data-whatever="lel">
-                        Editer
-                    </button> 
+                    <a href="{{ route('admin.users.show', $user) }}">{{ __('View') }}</a>
+                    <a href="{{ route('admin.users.edit', $user) }}">{{ __('Edit') }}</a>
+                    <a
+                        href="{{ route('admin.users.destroy', $user) }}"
+                        onclick="event.preventDefault();
+                        document.getElementById('delete-form').submit();">
+                        {{ __('Delete') }}
+                    </a>
+   
+                    <form id="delete-form" action="{{ route('admin.users.destroy', $user) }}" method="POST" style="display: none;">
+                        @csrf
+                        @method('DELETE')
+                    </form>
                 </td>
             </tr>
             @endforeach
@@ -46,27 +55,4 @@
 </div>
 
 {{ $users->links() }}
-
-<!-- Modal -->
-<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="editLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form>
-
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
 @endsection

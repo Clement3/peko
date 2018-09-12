@@ -9,6 +9,6 @@ class TestController extends Controller
 {
     public function test()
     {
-        
+        return User::find(7)->address->delete();
     }
 }

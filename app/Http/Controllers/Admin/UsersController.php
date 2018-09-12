@@ -56,20 +56,39 @@ class UsersController extends Controller
     public function update(Request $request, User $user)
     {
         $request->validate([
-            'title' => 'required|unique:posts|max:255',
-            'body' => 'required',
+            'firstname' => 'required|max:100',
+            'lastname' => 'required|max:100',
+            'email' => 'required|string|email|max:255',
+            'phone' => 'nullable|numeric|min:10|max:10',
+            'active' => 'required|boolean',
+            'role' => 'required|numeric|exists:roles,id'
         ]);
-                
-        $user->fill($request->all());
+
+        $user->update([
+            'firstname' => $request->input('firstname'),
+            'lastname' => $request->input('lastname'),
+            'email' => $request->input('email'),
+            'phone' => $request->input('phone'),
+            'is_active' => $request->input('active'),
+            'role_id' => $request->input('role')
+        ]);
 
         return redirect()->route('admin.users.show', ['user' => $user]);
     }
 
-    public function delete(User $user)
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Request $request, User $user)
     {
+        // Delete only the id 1
         $user->delete();
 
-        return redirect()->route('admin.users.index');
+        return redirect()->route('admin.users.index')
+            ->with('success', 'L\'utilisateur à bien été supprimer.');
     }
 
 }
