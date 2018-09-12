@@ -15,7 +15,7 @@ class VarietiesController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**

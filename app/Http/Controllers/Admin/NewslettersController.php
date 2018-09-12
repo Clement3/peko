@@ -15,39 +15,9 @@ class NewslettersController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $newsletters = Newsletter::all();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Newsletter  $newsletter
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Newsletter $newsletter)
-    {
-        //
+        return $newsletters;
     }
 
     /**
@@ -58,7 +28,7 @@ class NewslettersController extends Controller
      */
     public function edit(Newsletter $newsletter)
     {
-        //
+        return view('admin/newsletter/edit');
     }
 
     /**
@@ -81,6 +51,6 @@ class NewslettersController extends Controller
      */
     public function destroy(Newsletter $newsletter)
     {
-        //
+        $newsletter->delete();
     }
 }

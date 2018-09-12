@@ -15,7 +15,7 @@ class PagesController extends Controller
      */
     public function index()
     {
-        //
+        return Page::all();
     }
 
     /**
@@ -36,7 +36,7 @@ class PagesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $page = New Page;
     }
 
     /**
