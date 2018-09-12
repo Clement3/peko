@@ -32,7 +32,7 @@
                     <span class="badge badge-warning">Non</span>
                     @endif
                 </td>
-                
+                <td>
                     <a href="{{ route('admin.sliders.show', $slider) }}">{{ __('View') }}</a>
                     <a href="{{ route('admin.sliders.edit', $slider) }}">{{ __('Edit') }}</a>
                     <a
