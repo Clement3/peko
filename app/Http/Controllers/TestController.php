@@ -15,6 +15,6 @@ class TestController extends Controller
     }
 
     public function componentTest(){
-
+        return view('home', ['data' => DB::table('sliders')->get() ,'products' => DB::table('products')->paginate(8)]);
     }
 }

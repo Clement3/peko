@@ -14,7 +14,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $data = DB::table('sliders')->get();
-        return view('home', ['data' => $data]);
+        return view('home', ['data' => DB::table('sliders')->get() ,'products' => DB::table('products')->paginate(8)]);
     }
 }

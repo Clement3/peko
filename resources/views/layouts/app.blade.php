@@ -21,15 +21,20 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+        <a class="navbar-brand d-md-block d-none" href="{{ url('/') }}" style="position: absolute; left: 50%; transform: translate(-50%); z-index: 1000">
+            <img src="{{ asset('image/logo/Aux-Paniers-de-Peko - Logo.png') }}" width="150" alt="">
+        </a>
+        <nav style="margin-bottom: 60px;" class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
+                <a class="navbar-brand d-none d-sm-block d-md-none" href="{{ url('/') }}">
+                    <img src="{{ asset('image/logo/Aux-Paniers-de-Peko - Logo.png') }}" width="50" alt="">
+                </a>
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
