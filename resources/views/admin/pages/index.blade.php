@@ -25,13 +25,13 @@
                 <td>{{ $page->title }}</td>
                 <td>{{ $page->created_at }}</td>
                 <td>{{ $page->updated_at }}</td>
-                <!-- <td>
+                <td>
                     @if ($page->is_active) 
                     <span class="badge badge-info">Oui</span> 
                     @else
                     <span class="badge badge-warning">Non</span>
                     @endif
-                </td> -->
+                </td>
                     <td>
                     <a href="{{ route('admin.pages.show', $page) }}">{{ __('View') }}</a>
                     <a href="{{ route('admin.pages.edit', $page) }}">{{ __('Edit') }}</a>
