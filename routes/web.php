@@ -35,10 +35,16 @@ Route::prefix('admin')
     Route::get('/parameters', 'ParametersController@index');
     Route::patch('/parameters', 'ParametersController@update');
 
+    Route::get('/statistics', 'StatisticsController@index');
+
     Route::resources([
         'users' => 'UsersController',
         'products' => 'ProductsController',
         'sliders' => 'SlidersController',
-        'pages' => 'PagesController'
+        'pages' => 'PagesController',
+        'categories' => 'CategoriesController',
+        'labels' => 'LabelsController',
+        'newsletters' => 'NewslettersController',
+        'orders' => 'OrdersController'
     ]);
 });
