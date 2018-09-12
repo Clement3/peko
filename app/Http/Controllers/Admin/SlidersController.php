@@ -15,7 +15,9 @@ class SlidersController extends Controller
      */
     public function index()
     {
-        return "Hello Slider";
+        $sliders = Slider::all();
+
+        return $sliders;
     }
 
     /**
@@ -35,17 +37,6 @@ class SlidersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Slider  $slider
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Slider $slider)
     {
         //
     }

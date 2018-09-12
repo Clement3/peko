@@ -15,7 +15,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        return 'Hello';
+      return Product::all();
     }
 
     /**
@@ -25,7 +25,7 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -36,7 +36,7 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+          
     }
 
     /**
@@ -70,7 +70,7 @@ class ProductsController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+    
     }
 
     /**
@@ -81,6 +81,8 @@ class ProductsController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+
+        return redirect()->route('admin.product.index');
     }
 }

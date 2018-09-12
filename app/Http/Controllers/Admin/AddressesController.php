@@ -25,7 +25,7 @@ class AddressesController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
