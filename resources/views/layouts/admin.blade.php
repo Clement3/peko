@@ -52,61 +52,61 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="">
+                                <a class="nav-link {{ Request::is('admin/orders*') ? 'active' : null }}" href="{{ route('admin.orders.index') }}">
                                     <span data-feather="orders"></span>
                                     {{ __('Orders') }}
                                 </a>
                             </li>                            
                             <li class="nav-item">
-                                <a class="nav-link {{ Request::is('admin/users') ? 'active' : null }}" href="{{ route('admin.users.index') }}">
+                                <a class="nav-link {{ Request::is('admin/users*') ? 'active' : null }}" href="{{ route('admin.users.index') }}">
                                     <span data-feather="users"></span>
                                     {{ __('Users') }}
                                 </a>
                             </li>    
                             <li class="nav-item">
-                                <a class="nav-link" href="">
+                                <a class="nav-link {{ Request::is('admin/products*') ? 'active' : null }}" href="{{ route('admin.products.index') }}">
                                     <span data-feather="products"></span>
                                     {{ __('Products') }}
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="">
+                                <a class="nav-link {{ Request::is('admin/categories*') ? 'active' : null }}" href="{{ route('admin.categories.index') }}">
                                     <span data-feather="categories"></span>
                                     {{ __('Categories') }}
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="">
+                                <a class="nav-link {{ Request::is('admin/labels*') ? 'active' : null }}" href="{{ route('admin.labels.index') }}">
                                     <span data-feather="labels"></span>
                                     {{ __('Labels') }}
                                 </a>
                             </li>  
                             <li class="nav-item">
-                                <a class="nav-link" href="">
+                                <a class="nav-link {{ Request::is('admin/sliders*') ? 'active' : null }}" href="{{ route('admin.sliders.index') }}">
                                     <span data-feather="sliders"></span>
                                     {{ __('Sliders') }}
                                 </a>
                             </li> 
                             <li class="nav-item">
-                                <a class="nav-link" href="">
+                                <a class="nav-link {{ Request::is('admin/pages*') ? 'active' : null }}" href="{{ route('admin.pages.index') }}">
                                     <span data-feather="pages"></span>
                                     {{ __('Pages') }}
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="">
+                                <a class="nav-link {{ Request::is('admin/newsletters*') ? 'active' : null }}" href="{{ route('admin.newsletters.index') }}">
                                     <span data-feather="newsletters"></span>
                                     {{ __('Newsletters') }}
                                 </a>
                             </li>                                                                                                                                          
                             <li class="nav-item">
-                                <a class="nav-link" href="">
+                                <a class="nav-link {{ Request::is('admin/statistics*') ? 'active' : null }}" href="{{ route('admin.statistics.index') }}">
                                     <span data-feather="statistics"></span>
                                     {{ __('Statistics') }}
                                 </a>
                             </li>                            
                             <li class="nav-item">
-                                <a class="nav-link" href="">
+                            <a class="nav-link {{ Request::is('admin/parameters') ? 'active' : null }}" href="{{ route('admin.parameters.index') }}">
                                     <span data-feather="parameters"></span>
                                     {{ __('Parameters') }}
                                 </a>

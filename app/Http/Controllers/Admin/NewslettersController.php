@@ -17,7 +17,7 @@ class NewslettersController extends Controller
     {
         $newsletters = Newsletter::all();
 
-        return $newsletters;
+        return view('admin/newsletters/index', $newsletters);
     }
 
     /**
