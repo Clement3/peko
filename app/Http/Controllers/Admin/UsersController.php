@@ -6,6 +6,7 @@ use App\Role;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
@@ -89,6 +90,31 @@ class UsersController extends Controller
 
         return redirect()->route('admin.users.index')
             ->with('success', 'L\'utilisateur à bien été supprimer.');
+    }
+
+    public function setActive(User $user)
+    {
+        if (Auth::user()->id !== $user->id) {
+            if ($user->is_active) {
+
+                $user->update([
+                    'is_active' => false
+                ]);
+
+                return redirect()->route('admin.users.index')
+                ->with('success', 'Vous avez désactiver '. $user->fullname());                
+            }
+
+            $user->update([
+                'is_active' => true
+            ]);
+
+            return redirect()->route('admin.users.index')
+                ->with('success', 'Vous avez activer '. $user->fullname());
+        }
+
+        return redirect()->route('admin.users.index')
+            ->with('error', 'Vous ne pouvez pas vous désactivez vous mêmes.');
     }
 
 }
