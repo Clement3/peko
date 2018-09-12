@@ -7,5 +7,4 @@
 
 @include('partials/_alert')
 
-
 @endsection

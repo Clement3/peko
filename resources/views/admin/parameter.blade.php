@@ -8,4 +8,8 @@
 @include('partials/_alert')
 
 
+<form method="POST" action="{{ route('admin.parameters.update') }}">
+
+</form>
+
 @endsection

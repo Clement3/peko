@@ -32,7 +32,7 @@
                     <span class="badge badge-warning">Non</span>
                     @endif
                 </td>
-                
+                <td>
                     <a href="{{ route('admin.pages.show', $page) }}">{{ __('View') }}</a>
                     <a href="{{ route('admin.pages.edit', $page) }}">{{ __('Edit') }}</a>
                     <a
@@ -53,6 +53,6 @@
     </table>
 </div>
 
-{{ $page->links() }}
+{{ $pages->links() }}
 
 @endsection

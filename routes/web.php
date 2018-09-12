@@ -33,7 +33,7 @@ Route::prefix('admin')
     Route::get('/', 'DashboardController@index')->name('dashboard');
 
     Route::get('/parameters', 'ParametersController@index')->name('parameters.index');
-    Route::patch('/parameters', 'ParametersController@update')->name('parameters.index');
+    Route::patch('/parameters', 'ParametersController@update')->name('parameters.update');
 
     Route::get('/statistics', 'StatisticsController@index')->name('statistics.index');
 
