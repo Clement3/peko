@@ -49,9 +49,24 @@ class PagesController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $request->validate([
+            'title' => 'required|string|max:100',
+            'body' => 'required|string|max:100',
+            'is_active' => 'boolean',
+        ]);
+                //dd($request);
+        Page::create([
+            'title' => $request->input('title'),
+            'body' => $request->input('body'),
+            'is_active' => $request->input('is_active'),
+            'slug' => str_slug($request->input('title', '-'))
 
+        ]);
+
+        return redirect()->route('admin.pages.index')
+            ->with('success', 'La page a été créée.');
+    }
+   
     /**
      * Update the specified resource in storage.
      *
@@ -61,7 +76,21 @@ class PagesController extends Controller
      */
     public function update(Request $request, Page $page)
     {
-        return view('admin/pages/update', ['page' => $page]);
+        $request->validate([
+            'title' => 'required|string|max:100',
+            'body' => 'required|string|max:100',
+            'is_active' => 'boolean',
+        ]);
+
+        $page->update([
+            'title' => $request->input('title'),
+            'body' => $request->input('body'),
+            'is_active' => 1,
+            'slug' => str_slug($request->input('title', '-'))
+        ]);
+
+        return redirect()->route('admin.pages.index')
+        ->with('success', 'La page a été éditer.');
     }
 
     /**
@@ -74,6 +103,6 @@ class PagesController extends Controller
     {
         $page->delete();
 
-        return redirect()->route('admin.pages.index');
+        return redirect()->route('admin/index');
     }
 }

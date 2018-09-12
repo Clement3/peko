@@ -17,7 +17,7 @@
                 <th scope="col">Mis à Jour le :</th>
                 <th scope="col">ID_Produit</th>
                 <th scope="col">ID_Utilisateur</th>
-                <th scope="col">Etat de la commande</th>
+                <th scope="col">État de la commande</th>
             </tr>
         </thead>
         <tbody>
