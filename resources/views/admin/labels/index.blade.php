@@ -36,7 +36,7 @@
                     <a href="{{ route('admin.labels.show', $label) }}">{{ __('View') }}</a>
                     <a href="{{ route('admin.labels.edit', $label) }}">{{ __('Edit') }}</a>
                     <a
-                        href="{{ route('admin.labels.destroy', $label }}"
+                        href="{{ route('admin.labels.destroy', $label) }}"
                         onclick="event.preventDefault();
                         document.getElementById('delete-form').submit();">
                         {{ __('Delete') }}
