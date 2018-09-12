@@ -1,6 +1,5 @@
 @if ($data)
-<div style="height : 200px; overflow: hidden;" class="container">
-    <div style="height : 200px;" id="homeSlider" class="carousel slide" data-ride="carousel">
+    <div style="height : 200px; overlfow: hidden;" id="homeSlider" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             @foreach($data as $key => $slider)
                 @if($key === 0)
@@ -40,5 +39,4 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
-</div>
 @endif

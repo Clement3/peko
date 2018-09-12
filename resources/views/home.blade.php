@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    @include('partials.slider')
+    @include('partials._slider')
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -20,5 +20,7 @@
             </div>
         </div>
     </div>
+    @component('components/products_card', ['products' => $products])
+    @endcomponent
 </div>
 @endsection
