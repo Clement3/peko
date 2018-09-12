@@ -27,7 +27,7 @@ class SlidersController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin/sliders/create');
     }
 
     /**
