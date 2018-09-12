@@ -15,7 +15,9 @@ class PagesController extends Controller
      */
     public function index()
     {
-        return Page::all();
+        $pages = Page::paginate(10);
+
+        return view('admin/pages/index', ['pages' => $pages]);
     }
 
     /**
@@ -25,7 +27,7 @@ class PagesController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin/pages/create', ['pages' => $pages]);
     }
 
     /**
@@ -34,20 +36,9 @@ class PagesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function edit(Request $request)
     {
-        $page = New Page;
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Page  $page
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Page $page)
-    {
-        //
+        return view('admin/pages/edit', ['pages' => $pages]);
     }
 
     /**
@@ -56,7 +47,7 @@ class PagesController extends Controller
      * @param  \App\Page  $page
      * @return \Illuminate\Http\Response
      */
-    public function edit(Page $page)
+    public function store(Page $page)
     {
         //
     }
@@ -70,7 +61,7 @@ class PagesController extends Controller
      */
     public function update(Request $request, Page $page)
     {
-        //
+        return view('admin/pages/update', ['pages' => $pages]);
     }
 
     /**
@@ -81,6 +72,8 @@ class PagesController extends Controller
      */
     public function destroy(Page $page)
     {
-        //
+        $page->delete();
+
+        return redirect()->route('admin.pages.index');
     }
 }

@@ -15,19 +15,12 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        //
+        $orders = Order::paginate(10);
+
+        return view('admin/orders/index', ['orders' => $orders]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
+  
     /**
      * Store a newly created resource in storage.
      *
@@ -39,16 +32,6 @@ class OrdersController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Order $order)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -58,7 +41,7 @@ class OrdersController extends Controller
      */
     public function edit(Order $order)
     {
-        //
+        return view('admin/orders/edit', ['orders' => $orders]);
     }
 
     /**
@@ -70,7 +53,7 @@ class OrdersController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        //
+        return view('admin/orders/update', ['orders' => $orders]);
     }
 
     /**
@@ -81,6 +64,8 @@ class OrdersController extends Controller
      */
     public function destroy(Order $order)
     {
-        //
+        $order->delete();
+
+        return redirect()->route('admin.orders.index');
     }
 }

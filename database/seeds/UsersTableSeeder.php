@@ -13,7 +13,6 @@ class UsersTableSeeder extends Seeder
     public function run() 
     {
         DB::table('users')->insert([
-            'name' => 'Administrateur',
             'email' => 'admin@admin.com',
             'password' => bcrypt('admin'),
             'firstname' => 'John',
@@ -24,7 +23,6 @@ class UsersTableSeeder extends Seeder
 
         for ($i = 1; $i <= 10; $i++) {
             DB::table('users')->insert([
-                'name' => 'Client '.$i,
                 'email' => 'client' .$i . '@client.com',
                 'password' => bcrypt('client'),
                 'firstname' => 'John',
