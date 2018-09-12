@@ -14,8 +14,7 @@ class TestController extends Controller
         return User::find(7)->address->delete();
     }
 
-    public function slider(){
-        $data = DB::table('sliders')->get();
-        return view('home', ['data' => $data]);
+    public function componentTest(){
+
     }
 }
