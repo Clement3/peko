@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\DB;
+
 
 class TestController extends Controller
 {
@@ -12,7 +14,8 @@ class TestController extends Controller
         
     }
 
-    public function testGit(){
-        return "C'est bon git remarche";
+    public function slider(){
+        $data = DB::table('sliders')->get();
+        return view('home', ['data' => $data]);
     }
 }
