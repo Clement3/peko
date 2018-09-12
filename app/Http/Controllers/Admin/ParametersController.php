@@ -15,7 +15,12 @@ class ParametersController extends Controller
      */
     public function index()
     {
-        return view('admin/parameter');
+        $parameters = [
+            'app_title' => Parameter::where('meta', 'app_title')->first(),
+            'app_description' => Parameter::where('meta', 'app_description')->first()
+        ];
+
+        return view('admin/parameter', $parameters);
     }
 
     /**
