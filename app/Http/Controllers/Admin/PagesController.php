@@ -27,27 +27,27 @@ class PagesController extends Controller
      */
     public function create()
     {
-        return view('admin/pages/create', ['pages' => $pages]);
+        return view('admin/pages/create');
     }
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
+     * 
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request)
+    public function edit(Page $page)
     {
-        return view('admin/pages/edit', ['pages' => $pages]);
+        return view('admin/pages/edit', ['page' => $page]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Page  $page
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Page $page)
+    public function store(Request $request)
     {
         //
     }
@@ -61,7 +61,7 @@ class PagesController extends Controller
      */
     public function update(Request $request, Page $page)
     {
-        return view('admin/pages/update', ['pages' => $pages]);
+        return view('admin/pages/update', ['page' => $page]);
     }
 
     /**
