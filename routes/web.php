@@ -38,6 +38,8 @@ Route::prefix('admin')
 
     Route::get('/statistics', 'StatisticsController@index')->name('statistics.index');
 
+    Route::get('/users/{user}/active', 'UsersController@setActive')->name('users.active');
+    
     Route::resources([
         'users' => 'UsersController',
         'products' => 'ProductsController',

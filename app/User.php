@@ -45,6 +45,14 @@ class User extends Authenticatable
     }
 
     /**
+     * Récupère les commandes de l'utilisateur
+     */
+    public function orders()
+    {
+        return $this->hasMany('App\Order');
+    }
+
+    /**
      * Affiche le prénom et le nom de famille
      */
     public function fullname()
