@@ -12,7 +12,7 @@
 */
 
 Route::get('/test', 'TestController@test');
-Route::get('/slide', 'TestController@slider');
+Route::get('/component', 'TestController@componentTest');
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
