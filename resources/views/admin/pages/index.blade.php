@@ -13,8 +13,8 @@
             <tr>
                 <th scope="col"># ID</th>
                 <th scope="col">Titre</th>
-                <th scope="col">Actif</th>
                 <th scope="col">Création</th>
+                <th scope="col">Actif</th>
                 <th scope="col">Mis à jour</th>
             </tr>
         </thead>
@@ -24,7 +24,6 @@
                 <th scope="row">{{ $page->id }}</th>
                 <td>{{ $page->title }}</td>
                 <td>{{ $page->created_at }}</td>
-                <td>{{ $page->updated_at }}</td>
                 <td>
                     @if ($page->is_active) 
                     <span class="badge badge-info">Oui</span> 
@@ -32,6 +31,8 @@
                     <span class="badge badge-warning">Non</span>
                     @endif
                 </td>
+                <td>{{ $page->updated_at }}</td>
+                
                     <td>
                     <a href="{{ route('admin.pages.show', $page) }}">{{ __('View') }}</a>
                     <a href="{{ route('admin.pages.edit', $page) }}">{{ __('Edit') }}</a>
