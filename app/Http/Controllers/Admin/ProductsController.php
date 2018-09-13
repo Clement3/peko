@@ -15,9 +15,9 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products = Product::paginate(10);
+        $products = Product::all();
 
-        return view('admin/products/index', $products);
+        return view('admin/products/index', ['products' => $products]);
     }
 
     /**
@@ -49,7 +49,7 @@ class ProductsController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return view('admin/products/show', ['product' => $product]);
     }
 
     /**

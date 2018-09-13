@@ -24,7 +24,7 @@
                 <h5 class="card-title">{{ $user->fullname() }}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">{{ $user->created_at }}</h6>
                 <p class="card-text">
-                    <strong>E-mail :</strong> {{ $user->email }}</br>
+                    <strong>E-mail :</strong> {{ $user->email }} </br>
                     <strong>Téléphone :</strong> {{ $user->phone }}
                 </p>
 
