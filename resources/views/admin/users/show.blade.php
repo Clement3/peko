@@ -4,7 +4,19 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">Voir l'utilisateur : {{ $user->email }}</h1>
 </div>
-    
+
+ 
+@if(isset($user->pro))
+    <ul>
+        <li>{{$user->pro->social_reason}}</li>
+        <li>{{$user->pro->siret}}</li>
+        <li>{{$user->pro->company_name}}</li>
+        <li>{{$user->pro->tva_intracommunity}}</li>
+    </ul>
+@else
+    Cet utilisateur n'est pas un Professionnel.
+@endif
+
 <div class="row">
     <div class="col-sm-4">
         <div class="card">
