@@ -10,7 +10,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/front.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -21,12 +21,12 @@
 </head>
 <body>
     <div id="app">
-        <a class="navbar-brand d-md-block d-none" href="{{ url('/') }}" style="position: absolute; left: 50%; transform: translate(-50%); z-index: 1000">
+        <a class="navbar-brand d-lg-block d-none" href="{{ url('/') }}" style="position: absolute; left: 50%; transform: translate(-50%); z-index: 1000">
             <img src="{{ asset('image/logo/Aux-Paniers-de-Peko - Logo.png') }}" width="150" alt="">
         </a>
         <nav style="margin-bottom: 60px;" class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
-                <a class="navbar-brand d-none d-sm-block d-md-none" href="{{ url('/') }}">
+                <a class="navbar-brand d-none d-md-block d-lg-none" href="{{ url('/') }}">
                     <img src="{{ asset('image/logo/Aux-Paniers-de-Peko - Logo.png') }}" width="50" alt="">
                 </a>
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -38,7 +38,8 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        @component('components/products_nav', ['cat' => $cat])
+                        @endcomponent
                     </ul>
 
                     <!-- Right Side Of Navbar -->
