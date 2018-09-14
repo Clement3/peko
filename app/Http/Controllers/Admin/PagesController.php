@@ -112,5 +112,24 @@ class PagesController extends Controller
         return redirect()->route('admin.pages.index');
     }
 
+    public function SetActive(Page $page)
+    {
+        if ($page->is_active) {
 
+            $page->update([
+                'is_active' => false
+            ]);
+            return redirect()->route('admin.pages.index')
+                ->with('success', 'Vous avez désactiver '. $page->title);
+        }
+        else
+        {
+            $page->update([
+                'is_active' => true
+            ]);
+            return redirect()->route('admin.pages.index')
+                ->with('success', 'Vous avez Activer '. $page->title);
+
+        }
+    }
 }

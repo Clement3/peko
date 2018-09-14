@@ -36,8 +36,15 @@
                 <td>{{ $page->updated_at }}</td>
                 
                     <td>
+                     <a href="{{ route('admin.pages.active', $page) }}" class="card-link">
+                          @if ($page->is_active)
+                                    Désactiver
+                                    @else
+                                    Activer
+                                    @endif
                     <a href="{{ route('admin.pages.show', $page) }}">{{ __('View') }}</a>
                     <a href="{{ route('admin.pages.edit', $page) }}">{{ __('Edit') }}</a>
+                    
                     <a
                         href="{{ route('admin.pages.destroy', $page) }}"
                         onclick="event.preventDefault();
