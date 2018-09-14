@@ -13,6 +13,7 @@
             <tr>
                 <th scope="col"># ID</th>
                 <th scope="col">Titre</th>
+                <th scope="col">Contenu</th>
                 <th scope="col">Création</th>
                 <th scope="col">Actif</th>
                 <th scope="col">Mis à jour</th>
@@ -23,6 +24,7 @@
             <tr>
                 <th scope="row">{{ $page->id }}</th>
                 <td>{{ $page->title }}</td>
+                <td>{{ $page->body }}</td>
                 <td>{{ $page->created_at }}</td>
                 <td>
                     @if ($page->is_active) 

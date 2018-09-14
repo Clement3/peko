@@ -30,6 +30,12 @@ class PagesController extends Controller
         return view('admin/pages/create');
     }
 
+
+    public function show(Page $page)
+    {
+        return view('admin/pages/show', ['page' => $page]);
+    }
+
     /**
      * Store a newly created resource in storage.
      * 
@@ -103,6 +109,8 @@ class PagesController extends Controller
     {
         $page->delete();
 
-        return redirect()->route('admin/index');
+        return redirect()->route('admin.pages.index');
     }
+
+
 }
