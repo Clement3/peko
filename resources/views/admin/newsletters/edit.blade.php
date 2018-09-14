@@ -8,7 +8,6 @@
 <form method="POST" action="{{ route('admin.newsletters.update', ['newsletter' => $newsletter]) }}">
     @csrf
     @method('PUT')
-
     <div class="form-group">
         <label for="email">{{ __('E-mail') }}</label>
         <input id="email" type="email" 

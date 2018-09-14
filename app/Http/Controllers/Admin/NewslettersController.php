@@ -46,7 +46,7 @@ class NewslettersController extends Controller
             'email' => 'required|string|email|max:255',
         ]);
 
-        $page->update([
+        $newsletter->update([
             'email' => $request->input('email'),
         ]);
 

@@ -25,7 +25,7 @@
                 <td>{{ $newsletter->created_at }}</td>
                 <td>{{ $newsletter->updated_at }}</td>
                 <td>
-                    <a href="{{ route('admin.newsletters.show', $newsletter) }}">{{ __('View') }}</a>
+                    {{-- <a href="{{ route('admin.newsletters.show', $newsletter) }}">{{ __('View') }}</a> --}}
                     <a href="{{ route('admin.newsletters.edit', $newsletter) }}">{{ __('Edit') }}</a>
                     <a
                         href="{{ route('admin.newsletters.destroy', $newsletter) }}"

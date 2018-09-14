@@ -41,17 +41,17 @@ class SlidersController extends Controller
         $request->validate([
             'title' => 'required|string|max:191',
             'body' => 'required|string|max:200',
-            'active' => 'required|boolean'
+            'active' => 'boolean'
         ]);
 
         Slider::create([
             'title' => $request->input('title'),
             'body' => $request->input('body'),
-            'picture' => 'tgg-hybyyb'
+            'is_active' => $request->input('is_active')
         ]);
 
         return redirect()->route('admin.sliders.index')
-            ->with('success', 'Vous avez bien enregistré un nouveau slider');
+            ->with('success', 'Vous avez bien enregistré un nouveau caroussel');
     }
 
     /**
@@ -62,7 +62,9 @@ class SlidersController extends Controller
      */    
     public function show(Slider $slider)
     {
-        return view('admin/sliders/show', ['slider' => $slider]);
+        return view('admin/sliders/show', [
+            'slider' => $slider
+        ]);
     }
 
     /**
@@ -74,7 +76,7 @@ class SlidersController extends Controller
     public function edit(Slider $slider)
     {
         return view('admin/sliders/edit', [
-            'slider' => $slider,
+            'slider' => $slider
         ]);
     }
 
@@ -90,15 +92,13 @@ class SlidersController extends Controller
         $request->validate([
             'title' => 'required|string|max:191',
             'body' => 'required|string|max:200',
-            'active' => 'required|boolean'
         ]);
 
-        $user->update([
+        $slider->update([
             'title' => $request->input('title'),
             'body' => $request->input('body'),
-            'is_active' => $request->input('active')
         ]);
-        return redirect()->route('admin.sliders.show', ['slider' => $slider]);
+        return redirect()->route('admin.sliders.index', ['slider' => $slider]);
     }
 
     /**
@@ -111,9 +111,8 @@ class SlidersController extends Controller
     
         {
             $slider->delete();
-    
             return redirect()->route('admin.sliders.index')
-                ->with('success', 'Le slider a bien été supprimé.');
+                ->with('success', 'Le carrousel a bien été supprimé.');
         }
     
 }
