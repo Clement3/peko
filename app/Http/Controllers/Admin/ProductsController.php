@@ -15,9 +15,9 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products = Product::paginate(10);
+        $products = Product::all();
 
-        return view('admin/products/index', $products);
+        return view('admin/products/index', ['products' => $products]);
     }
 
     /**
@@ -49,7 +49,7 @@ class ProductsController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return view('admin/products/show', ['product' => $product]);
     }
 
     /**
@@ -60,7 +60,10 @@ class ProductsController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view('admin/products/edit',
+        [
+             'product' => $product]);
+
     }
 
     /**
@@ -70,9 +73,24 @@ class ProductsController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
+
+
     public function update(Request $request, Product $product)
     {
-    
+        // $request->validate([
+        //     'title' => 'required|max:100',
+        //     'body' => 'required|max:100',
+        //     // 'picture' => 'required|string|max:255',
+        
+        // ]);
+        $product->update([
+            'title' => $request->input('title'),
+            'body' => $request->input('body'),
+            // 'picture' => $request->input('picture'),
+           
+        ]);
+
+        return redirect()->route('admin.products.show', ['product' => $product]);
     }
 
     /**
@@ -85,6 +103,6 @@ class ProductsController extends Controller
     {
         $product->delete();
 
-        return redirect()->route('admin.product.index');
+        return redirect()->route('admin.products.index');
     }
 }

@@ -28,7 +28,9 @@ class NewslettersController extends Controller
      */
     public function edit(Newsletter $newsletter)
     {
-        return view('admin/newsletter/edit');
+        return view('admin/newsletters/edit',[
+            'newsletter' => $newsletter
+        ]);
     }
 
     /**
@@ -40,7 +42,16 @@ class NewslettersController extends Controller
      */
     public function update(Request $request, Newsletter $newsletter)
     {
-        //
+        $request->validate([
+            'email' => 'required|string|email|max:255',
+        ]);
+
+        $page->update([
+            'email' => $request->input('email'),
+        ]);
+
+        return redirect()->route('admin.newsletters.index')
+        ->with('success', 'La page a été mise en jour');
     }
 
     /**
@@ -52,5 +63,7 @@ class NewslettersController extends Controller
     public function destroy(Newsletter $newsletter)
     {
         $newsletter->delete();
+        return redirect()->route('admin.newsletters.index')
+            ->with('success','la newsletter a bien été supprimée');
     }
 }
