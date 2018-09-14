@@ -42,8 +42,10 @@
     </div>    
 
     <div class="form-group">
-        <label for="categories">Catégories</label>
-        <select name="variety" class="form-control{{ $errors->has('variety') ? ' is-invalid' : '' }}" id="categories">
+        <label for="variety">Variété</label>
+        <select class="form-control{{ $errors->has('variety') ? ' is-invalid' : '' }}" 
+            name="variety"
+            id="variety">
             @foreach ($categories as $category)
             <optgroup label="{{ $category->name }}">
                 @foreach ($category->varieties as $variety)
@@ -52,7 +54,56 @@
             </optgroup>
             @endforeach
         </select>
+
+        @if ($errors->has('variety'))
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $errors->first('variety') }}</strong>
+            </span>
+        @endif        
     </div>
+
+    <div class="form-row">
+        <div class="col-md-6 col-sm-12">
+            <label for="price">{{ __('Prix') }}</label>
+            <input id="price" type="text" 
+                class="form-control{{ $errors->has('price') ? ' is-invalid' : '' }}" 
+                name="price" 
+                value="{{ old('price') }}" 
+                required>
+            
+            @if ($errors->has('price'))
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $errors->first('price') }}</strong>
+                </span>
+            @endif
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <label for="price_kilo">{{ __('Prix au kilo') }}</label>
+            <input id="price_kilo" type="text" 
+                class="form-control{{ $errors->has('price_kilo') ? ' is-invalid' : '' }}" 
+                name="price_kilo" 
+                value="{{ old('price_kilo') }}" 
+                required>
+            
+            @if ($errors->has('price_kilo'))
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $errors->first('price_kilo') }}</strong>
+                </span>
+            @endif
+        </div>        
+    </div>
+
+    <div class="custom-file mt-3">
+        <input type="file" class="custom-file-input" id="picture" name="picture">
+        <label class="custom-file-label" for="picture">Image du produit</label>
+        @if ($errors->has('picture'))
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $errors->first('picture') }}</strong>
+            </span>
+        @endif         
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3 mb-3">Créer le produit</button>
 </form>
 
 @endsection

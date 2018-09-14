@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Validator;
 use App\Product;
 use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class ProductsController extends Controller
 {
@@ -43,7 +45,26 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-          
+        $request->validate([
+            'title' => 'bail|required|string|max:191',
+            'body' => 'required|string',
+            'variety' => 'required|exists:varieties,id',
+            'price' => 'required|numeric',
+            'price_kilo' => 'required|numeric',
+            'picture' => 'nullable|file|mimes:jpeg,png|size:2048'
+        ]);
+
+        if ($request->has('picture')) {
+            $picture = $request->file('picture')->store('products');
+
+            return $picture;
+        }
+
+        Product::create([
+            'slug' => str_slug($request->input('title')),
+            'title' => $request->input('title'),
+            'price' => $request->input('price')
+        ]);
     }
 
     /**
@@ -65,10 +86,9 @@ class ProductsController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('admin/products/edit',
-        [
-             'product' => $product]);
-
+        return view('admin/products/edit', [
+            'product' => $product
+        ]);
     }
 
     /**
