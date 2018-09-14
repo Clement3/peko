@@ -17,9 +17,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $cat = Category::get();
         $products = Product::paginate(8);
         $slider  = Slider::get();
-        return view('home', ['data' => $slider ,'products' => $products, 'cat' => $cat]);    
+        return view('home', ['data' => $slider ,'products' => $products]);    
     }
 }
