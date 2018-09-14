@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
-    <h1 class="h2">Products</h1>
+    <h1 class="h2">Produits</h1>
 </div>
 
 @include('partials/_alert')
@@ -12,16 +12,10 @@
         <thead>
             <tr>
                 <th scope="col"># ID</th>
-                {{-- <th scope="col">Id_variété</th> --}}
-                {{-- <th scope="col">price_filter_id</th> --}}
-                {{-- <th scope="col">slug</th> --}}
                 <th scope="col">Titre</th>
-                <th scope="col">Prix</th>
-                <th scope="col">Description</th>
-                <th scope="col">Image</th>
-                <th scope="col">Actif</th>
                 <th scope="col">Création</th>
-                <th scope="col">Mis à jour le :</th>
+                <th scope="col">Actif</th>
+                <th scope="col">Mis à jour</th>
             </tr>
         </thead>
         <tbody>
