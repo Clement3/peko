@@ -18,6 +18,8 @@ class ProductsTableSeeder extends Seeder
                 'slug' => str_slug($title, "-"),
                 'title' => $title,
                 'price' => mt_rand(5, 100),
+                'price_kilo' => mt_rand(50, 500),
+                'quantity' => mt_rand(50, 100),
                 'body' => "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer euismod elit quis neque venenatis ultricies. Suspendisse iaculis lorem sed velit sodales volutpat. Proin at mauris finibus, sodales orci sed, pulvinar ante. Aliquam ornare lacus in aliquam gravida. Pellentesque ut pulvinar erat. Proin sollicitudin lacus vel volutpat pharetra. Mauris luctus mollis mollis. Nam nec ligula pharetra, placerat ex eget, efficitur dolor. Nam faucibus diam sit amet odio dapibus, et volutpat nulla semper. ",
                 'created_at' => Date('Y-m-d H:i:s'),
                 'variety_id' => mt_rand(1, 10),

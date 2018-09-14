@@ -13,6 +13,16 @@ class Product extends Model
      * @var array
      */
     protected $fillable = [
-        'variety_id', 'price_filter_id', 'title', 'slug', 'price', 'body', 'is_active', 'picture', 'created_at', ' updated_at' 
-    ];  //
+        'variety_id', 'price_filter_id', 'title', 'slug', 'price', 'body', 'is_active', 'picture'
+    ];
+
+    public function priceFilter()
+    {
+        return $this->belongsTo('App\Price_filter');
+    }
+
+    public function variety()
+    {
+        return $this->belongsTo('App\Variety');
+    }
 }

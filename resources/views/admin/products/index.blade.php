@@ -12,24 +12,26 @@
         <thead>
             <tr>
                 <th scope="col"># ID</th>
-                <th scope="col">Titre</th>
-                <th scope="col">Création</th>
-                <th scope="col">Actif</th>
-                <th scope="col">Mis à jour</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Prix</th>
+                <th scope="col">Prix au kilo</th>
+                <th scope="col">Catégorie</th>
+                <th scope="col">Variété</th>
+                <th scope="col">Stock</th>
+                <th scope="col">Activé</th>
+                <th scope="col">Créer le</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($products as $product)
             <tr>
                 <th scope="row">{{ $product->id }}</th>
-                {{-- <td>{{ $product->variety_id }}</td> --}}
-                {{-- <td>{{ $product->price_filter_id }}</td> --}}
-                {{-- <td>{{ $product->slug }}</td> --}}
                 <td>{{ $product->title }}</td>
-                <td>{{ $product->price }}</td>
-                <td>{{ $product->body }}</td>
-                {{-- <td>{{ $product->is_active }}</td> --}}
-                <td>{{ $product->picture }}</td>
+                <td>{{ $product->price }} €</td>
+                <td>{{ $product->price_kilo }} €</td>
+                <td>{{ $product->variety->category->name }}
+                <td>{{ $product->variety->name }}</td>
+                <td>{{ $product->quantity }} Kg</td>
                 <td>
                     @if ($product->is_active) 
                     <span class="badge badge-info">Oui</span> 
@@ -37,12 +39,8 @@
                     <span class="badge badge-warning">Non</span>
                     @endif
                 </td>
-                <td>{{ $product->created_at}}</td>
-                {{-- <td>{{ $product->updated_at }}</td> --}}
-                
-                <td>{{ $product->updated_at }}</td>
-                
-                    <td>
+                <td>{{ $product->created_at}}</td>                
+                <td>
                     <a href="{{ route('admin.products.show', $product) }}">{{ __('View') }}</a>
                     <a href="{{ route('admin.products.edit', $product) }}">{{ __('Edit') }}</a>
                     <a
@@ -62,4 +60,7 @@
         </tbody>
     </table>
 </div>
+
+{{ $products->links() }}
+
 @endsection

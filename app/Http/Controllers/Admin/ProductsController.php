@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Product;
+use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -15,9 +16,11 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $products = Product::paginate(10);
 
-        return view('admin/products/index', ['products' => $products]);
+        return view('admin/products/index', [
+            'products' => $products
+        ]);
     }
 
     /**
@@ -27,7 +30,9 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        
+        $categories = Category::all()->sortBy('name');
+
+        return view('admin/products/create', ['categories' => $categories]);
     }
 
     /**

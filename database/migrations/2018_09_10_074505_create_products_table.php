@@ -20,12 +20,15 @@ class CreateProductsTable extends Migration
             $table->string('slug')->unique();
             $table->string('title', 100);
             $table->float('price');
+            $table->float('price_kilo');
+            $table->float('quantity');
             $table->text('body');
             $table->boolean('is_active')->default(true);
             $table->string('picture')->nullable();
             $table->timestamps();
 
             $table->foreign('variety_id')->references('id')->on('varieties');
+            $table->foreign('price_filter_id')->references('id')->on('price_filters');
         });
     }
 

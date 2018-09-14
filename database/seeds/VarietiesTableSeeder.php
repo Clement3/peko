@@ -19,7 +19,7 @@ class VarietiesTableSeeder extends Seeder
             DB::table('varieties')->insert([
                 'slug' => str_slug($name, "-"),
                 'name' => $name,
-                'stock' => mt_rand(0, 100),
+                'picture' => 'hello.jpg',
                 'category_id' => mt_rand(1, 5)
             ]);            
         }
