@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Validator;
 use App\Product;
 use App\Category;
+use App\PriceFilter;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
@@ -33,8 +33,12 @@ class ProductsController extends Controller
     public function create()
     {
         $categories = Category::all()->sortBy('name');
+        $filters = PriceFilter::all()->sortBy('name');
 
-        return view('admin/products/create', ['categories' => $categories]);
+        return view('admin/products/create', [
+            'categories' => $categories,
+            'filters' => $filters
+        ]);
     }
 
     /**
@@ -49,22 +53,31 @@ class ProductsController extends Controller
             'title' => 'bail|required|string|max:191',
             'body' => 'required|string',
             'variety' => 'required|exists:varieties,id',
+            'filter' => 'required|exists:price_filters,id',
             'price' => 'required|numeric',
             'price_kilo' => 'required|numeric',
-            'picture' => 'nullable|file|mimes:jpeg,png|size:2048'
+            'quantity' => 'required|numeric',
+            'picture' => 'nullable|image'
         ]);
 
         if ($request->has('picture')) {
-            $picture = $request->file('picture')->store('products');
-
-            return $picture;
+            $picture = $request->file('picture')->store('products', 'public');
         }
 
         Product::create([
             'slug' => str_slug($request->input('title')),
             'title' => $request->input('title'),
-            'price' => $request->input('price')
+            'body' => $request->input('body'),
+            'price' => $request->input('price'),
+            'price_kilo' => $request->input('price_kilo'),
+            'picture' => isset($picture) ? $picture : null,
+            'quantity' => $request->input('quantity'),
+            'variety_id' => $request->input('variety'),
+            'price_filter_id' => $request->input('filter')
         ]);
+
+        return redirect()->route('admin.products.index')
+            ->with('success', 'Vous avez bien rajouté le produit');
     }
 
     /**
@@ -86,8 +99,13 @@ class ProductsController extends Controller
      */
     public function edit(Product $product)
     {
+        $categories = Category::all()->sortBy('name');
+        $filters = PriceFilter::all()->sortBy('name');
+
         return view('admin/products/edit', [
-            'product' => $product
+            'product' => $product,
+            'categories' => $categories,
+            'filters' => $filters
         ]);
     }
 
@@ -102,20 +120,35 @@ class ProductsController extends Controller
 
     public function update(Request $request, Product $product)
     {
-        // $request->validate([
-        //     'title' => 'required|max:100',
-        //     'body' => 'required|max:100',
-        //     // 'picture' => 'required|string|max:255',
-        
-        // ]);
-        $product->update([
-            'title' => $request->input('title'),
-            'body' => $request->input('body'),
-            // 'picture' => $request->input('picture'),
-           
+        $request->validate([
+            'title' => 'bail|required|string|max:191',
+            'body' => 'required|string',
+            'variety' => 'required|exists:varieties,id',
+            'filter' => 'required|exists:price_filters,id',
+            'price' => 'required|numeric',
+            'price_kilo' => 'required|numeric',
+            'quantity' => 'required|numeric',
+            'picture' => 'nullable|image'
         ]);
 
-        return redirect()->route('admin.products.show', ['product' => $product]);
+        if ($request->has('picture')) {
+            $picture = $request->file('picture')->store('products', 'public');
+        }
+
+        $product->update([
+            'slug' => str_slug($request->input('title')),
+            'title' => $request->input('title'),
+            'body' => $request->input('body'),
+            'price' => $request->input('price'),
+            'price_kilo' => $request->input('price_kilo'),
+            'picture' => isset($picture) ? $picture : null,
+            'quantity' => $request->input('quantity'),
+            'variety_id' => $request->input('variety'),
+            'price_filter_id' => $request->input('filter')
+        ]);
+
+        return redirect()->route('admin.products.index')
+            ->with('success', 'Vous avez bien éditer le produit');
     }
 
     /**

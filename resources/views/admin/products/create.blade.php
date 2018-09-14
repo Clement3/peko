@@ -7,7 +7,7 @@
 
 @include('partials/_alert')
 
-<form method="POST" action="{{ route('admin.products.store') }}">
+<form method="POST" action="{{ route('admin.products.store') }}" enctype="multipart/form-data">
     @csrf
 
     <div class="form-group">
@@ -30,9 +30,7 @@
         <textarea class="form-control{{ $errors->has('body') ? ' is-invalid' : '' }}" 
             id="body" 
             name="body"
-            rows="3">
-            {{ old('body') }}
-        </textarea>
+            rows="3">{{ old('body') }}</textarea>
 
         @if ($errors->has('body'))
             <span class="invalid-feedback" role="alert">
@@ -63,7 +61,7 @@
     </div>
 
     <div class="form-row">
-        <div class="col-md-6 col-sm-12">
+        <div class="col-md-4 col-sm-12">
             <label for="price">{{ __('Prix') }}</label>
             <input id="price" type="text" 
                 class="form-control{{ $errors->has('price') ? ' is-invalid' : '' }}" 
@@ -77,7 +75,23 @@
                 </span>
             @endif
         </div>
-        <div class="col-md-6 col-sm-12">
+        <div class="col-m4 col-sm-12">
+            <label for="filter">{{ __('Filtre') }}</label>
+            <select class="form-control{{ $errors->has('filter') ? ' is-invalid' : '' }}" 
+                id="filter"
+                name="filter">
+                @foreach ($filters as $filter)
+                <option value="{{ $filter->id }}">{{ $filter->name }} - {{ $filter->quantity }} kg</option>
+                @endforeach
+            </select>
+
+            @if ($errors->has('filter'))
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $errors->first('filter') }}</strong>
+                </span>
+            @endif
+        </div>
+        <div class="col-md-4 col-sm-12">
             <label for="price_kilo">{{ __('Prix au kilo') }}</label>
             <input id="price_kilo" type="text" 
                 class="form-control{{ $errors->has('price_kilo') ? ' is-invalid' : '' }}" 
@@ -91,6 +105,21 @@
                 </span>
             @endif
         </div>        
+    </div>
+
+    <div class="form-group">
+        <label for="quantity">{{ __('Stock') }}</label>
+        <input id="quantity" type="text" 
+            class="form-control{{ $errors->has('quantity') ? ' is-invalid' : '' }}" 
+            name="quantity" 
+            value="{{ old('quantity') }}" 
+            required>
+        
+        @if ($errors->has('quantity'))
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $errors->first('quantity') }}</strong>
+            </span>
+        @endif
     </div>
 
     <div class="custom-file mt-3">
