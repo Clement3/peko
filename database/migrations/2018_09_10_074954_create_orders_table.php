@@ -19,8 +19,7 @@ class CreateOrdersTable extends Migration
             $table->float('price');
             $table->timestamps();
             $table->unsignedInteger('user_id');
-            $table->string('product_id');
-
+            
             $table->foreign('user_id')->references('id')->on('users');
         });
     }
