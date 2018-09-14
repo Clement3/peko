@@ -52,11 +52,10 @@ class User extends Authenticatable
         return $this->hasMany('App\Order');
     }
 
-    public function car()
+    public function pro()
     {
-        return $this->hasMany('App\Car');
+        return $this->hasOne('App\Professional');
     }
-
     /**
      * Affiche le prénom et le nom de famille
      */

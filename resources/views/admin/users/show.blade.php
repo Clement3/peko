@@ -5,6 +5,18 @@
     <h1 class="h2">Voir l'utilisateur : {{ $user->email }}</h1>
 </div>
 
+ 
+@if(isset($user->pro))
+    <ul>
+        <li>{{$user->pro->social_reason}}</li>
+        <li>{{$user->pro->siret}}</li>
+        <li>{{$user->pro->company_name}}</li>
+        <li>{{$user->pro->tva_intracommunity}}</li>
+    </ul>
+@else
+    Cet utilisateur n'est pas un Professionnel.
+@endif
+
 <div class="row">
     <div class="col-sm-4">
         <div class="card">
@@ -12,16 +24,8 @@
                 <h5 class="card-title">{{ $user->fullname() }}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">{{ $user->created_at }}</h6>
                 <p class="card-text">
-                    <p><strong>E-mail :</strong> {{ $user->email }}<p>
-                    <strong>Adresse :</strong></br>
-                    <p>{{ $user->address['address'] }}</br>
-                    @if (isset($user->address))
-                    {{ $user->address->complement}}
-                    @else 
-                        Pas de complement dadresse
-                    @endif
-                    {{ $user->address['postal_code'] }}&nbsp;{{ $user->address['city'] }}</br></p>
-                    <strong>Téléphone :</strong> {{ $user->address['phone'] }}
+                    <strong>E-mail :</strong> {{ $user->email }} </br>
+                    <strong>Téléphone :</strong> {{ $user->phone }}
                 </p>
 
                 <a href="{{ route('admin.users.active', $user) }}" class="card-link">
