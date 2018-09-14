@@ -72,6 +72,11 @@ class LabelsController extends Controller
         ]);
     }
 
+    public function show(Label $label)
+    {
+        return view('admin/labels/show', ['label' => $label]);
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -84,18 +89,16 @@ class LabelsController extends Controller
         $request->validate([
             'name' => 'required|string|max:191',
             'body' => 'required|string|max:200',
-            'recipe' => 'required|string|max:255',
-            'active' => 'required|boolean'
+            'recipe' => 'required|string|max:255'
         ]);
 
-        $user->update([
-            'title' => $request->input('title'),
+        $label->update([
+            'name' => $request->input('name'),
             'body' => $request->input('body'),
-            'recipe' => $request->input('recipe'),
-            'is_active' => $request->input('active')
+            'recipe' => $request->input('recipe')
         ]);
 
-        return view('admin/labels/index', ['label' => $label]);
+        return redirect()->route('admin.labels.index')->with('success', 'Etiquette modifier.');
     }
 
     /**
