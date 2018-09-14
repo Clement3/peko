@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Label;
+use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -27,8 +28,9 @@ class LabelsController extends Controller
      */
     public function create()
     {
-       
-        return view('admin/labels/create');
+        $categories = Category::all()->sortBy('name');
+
+        return view('admin/labels/create', ['categories' => $categories]);
     }
 
     /**
@@ -42,16 +44,22 @@ class LabelsController extends Controller
         {
             $request->validate([
                 'name' => 'required|string|max:191',
-                'body' => 'required|string|max:200',
-                'recipe' => 'required|string|max:255',
-                'picture' => 'required|string|max:100'
+                'body' => 'required|string|max:600',
+                'recipe' => 'required|string|max:600',
+                'variety' => 'required|exists:varieties,id',
+                'picture' => 'nullable|image'
             ]);
-    
-            Slider::create([
+
+            if ($request->has('picture')) {
+                $picture = $request->file('picture')->store('labels', 'public');
+            }
+
+            Label::create([
                 'name' => $request->input('body'),
                 'body' => $request->input('body'),
                 'recipe' => $request->input('recipe'),
-                'picture' => $request->input('picture')
+                'variety_id' => $request->input('variety'),
+                'picture' => isset($picture) ? $picture : null
             ]);
     
             return redirect()->route('admin.labels.index')
