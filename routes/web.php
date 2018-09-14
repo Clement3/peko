@@ -50,6 +50,7 @@ Route::prefix('admin')
         'categories' => 'CategoriesController',
         'labels' => 'LabelsController',
         'newsletters' => 'NewslettersController',
-        'orders' => 'OrdersController'
+        'orders' => 'OrdersController',
+        'contacts' => 'ContactsController'
     ]);
 });

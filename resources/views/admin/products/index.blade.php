@@ -12,6 +12,7 @@
         <thead>
             <tr>
                 <th scope="col"># ID</th>
+                <th scope="col">Image</th>
                 <th scope="col">Nom</th>
                 <th scope="col">Prix</th>
                 <th scope="col">Prix au kilo</th>
@@ -26,6 +27,14 @@
             @foreach ($products as $product)
             <tr>
                 <th scope="row">{{ $product->id }}</th>
+                <td>
+                    @if ($product->picture)
+                    <img src="{{ asset('storage/'.$product->picture) }}" 
+                        width="50px" height="50px">
+                    @else
+                    Pas d'image
+                    @endif
+                </td>
                 <td>{{ $product->title }}</td>
                 <td>{{ $product->price }} €</td>
                 <td>{{ $product->price_kilo }} €</td>

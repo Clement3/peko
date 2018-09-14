@@ -1,11 +1,13 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Editer le produit : {{ $product->id }}</h1>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+    <h1 class="h2">Editer un produit : {{ $product->title }}</h1>
 </div>
 
-<form method="POST" action="{{ route('admin.products.update', ['produit' => $product]) }}">
+@include('partials/_alert')
+
+<form method="POST" action="{{ route('admin.products.update', $product) }}" enctype="multipart/form-data">
     @csrf
     @method('PUT')
 
@@ -25,36 +27,113 @@
     </div>
 
     <div class="form-group">
-        <label for="body">{{ __('Contenu') }}</label>
-        <input id="body" type="text" 
-            class="form-control{{ $errors->has('body') ? ' is-invalid' : '' }}" 
-            name="body" 
-            value="{{ $product->body }}" 
-            required>
-        
+        <label for="body">{{ __('Description') }}</label>
+        <textarea class="form-control{{ $errors->has('body') ? ' is-invalid' : '' }}" 
+            id="body" 
+            name="body"
+            rows="3">{{ $product->title }}</textarea>
+
         @if ($errors->has('body'))
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $errors->first('body') }}</strong>
             </span>
         @endif
-    </div>
+    </div>    
 
-    <div class="form-group form-check">
-        <input type="checkbox" 
-            class="form-check-input{{ $errors->has('active') ? ' is-invalid' : '' }}" 
-            id="active" 
-            name="active" 
-            value="1" 
-            @if ($product->is_active) checked @endif>
-        <label class="form-check-label" for="active">Actif ? </label>
-        
-        @if ($errors->has('active'))
+    <div class="form-group">
+        <label for="variety">Variété</label>
+        <select class="form-control{{ $errors->has('variety') ? ' is-invalid' : '' }}" 
+            name="variety"
+            id="variety">
+            @foreach ($categories as $category)
+            <optgroup label="{{ $category->name }}">
+                @foreach ($category->varieties as $variety)
+                <option value="{{ $variety->id }}" {{ $product->selectedVariety($variety->id) }}>{{ $variety->name }}</option>
+                @endforeach
+            </optgroup>
+            @endforeach
+        </select>
+
+        @if ($errors->has('variety'))
             <span class="invalid-feedback" role="alert">
-                <strong>{{ $errors->first('active') }}</strong>
+                <strong>{{ $errors->first('variety') }}</strong>
             </span>
         @endif        
     </div>
 
-    <button type="submit" class="btn btn-primary">Editer</button>
+    <div class="form-row">
+        <div class="col-md-4 col-sm-12">
+            <label for="price">{{ __('Prix') }}</label>
+            <input id="price" type="text" 
+                class="form-control{{ $errors->has('price') ? ' is-invalid' : '' }}" 
+                name="price" 
+                value="{{ $product->price }}" 
+                required>
+            
+            @if ($errors->has('price'))
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $errors->first('price') }}</strong>
+                </span>
+            @endif
+        </div>
+        <div class="col-m4 col-sm-12">
+            <label for="filter">{{ __('Filtre') }}</label>
+            <select class="form-control{{ $errors->has('filter') ? ' is-invalid' : '' }}" 
+                id="filter"
+                name="filter">
+                @foreach ($filters as $filter)
+                <option value="{{ $filter->id }}" {{ $product->selectedFilter($filter->id) }}>{{ $filter->name }} - {{ $filter->quantity }} kg</option>
+                @endforeach
+            </select>
+
+            @if ($errors->has('filter'))
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $errors->first('filter') }}</strong>
+                </span>
+            @endif
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <label for="price_kilo">{{ __('Prix au kilo') }}</label>
+            <input id="price_kilo" type="text" 
+                class="form-control{{ $errors->has('price_kilo') ? ' is-invalid' : '' }}" 
+                name="price_kilo" 
+                value="{{ $product->price_kilo }}" 
+                required>
+            
+            @if ($errors->has('price_kilo'))
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $errors->first('price_kilo') }}</strong>
+                </span>
+            @endif
+        </div>        
+    </div>
+
+    <div class="form-group">
+        <label for="quantity">{{ __('Stock') }}</label>
+        <input id="quantity" type="text" 
+            class="form-control{{ $errors->has('quantity') ? ' is-invalid' : '' }}" 
+            name="quantity" 
+            value="{{ $product->quantity }}" 
+            required>
+        
+        @if ($errors->has('quantity'))
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $errors->first('quantity') }}</strong>
+            </span>
+        @endif
+    </div>
+
+    <div class="custom-file mt-3">
+        <input type="file" class="custom-file-input" id="picture" name="picture">
+        <label class="custom-file-label" for="picture">Image du produit</label>
+        @if ($errors->has('picture'))
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $errors->first('picture') }}</strong>
+            </span>
+        @endif         
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3 mb-3">Editer le produit</button>
 </form>
+
 @endsection
