@@ -15,6 +15,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -22,102 +23,142 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-            <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Administration Péko</a>
-            <ul class="navbar-nav px-3">
-                <li class="nav-item text-nowrap">
-                    <a class="nav-link" href="{{ route('logout') }}"
-                        onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}
+        <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+            <a class="navbar-brand mr-1" href="index.html">Start Bootstrap</a>
+      
+            <!-- Navbar Search -->
+            <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+      
+            <!-- Navbar -->
+            <ul class="navbar-nav ml-auto ml-md-0">
+                <li class="nav-item dropdown no-arrow">
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-user-circle fa-fw"></i>
                     </a>
-
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                        <a class="dropdown-item" href="#">Settings</a>
+                        <a class="dropdown-item" href="#">Activity Log</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
+                    </div>
                 </li>
             </ul>
-        </nav>
-        
-        <div class="container-fluid">
-            <div class="row">
-                <!-- Menu Aside -->
-                <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-                    <div class="sidebar-sticky">
-                        <ul class="nav flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link {{ Request::is('admin') ? 'active' : null }}" href="{{ route('admin.dashboard') }}">
-                                    <span data-feather="home"></span>
-                                    {{ __('Dashboard') }} <span class="sr-only">(current)</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link {{ Request::is('admin/orders*') ? 'active' : null }}" href="{{ route('admin.orders.index') }}">
-                                    <span data-feather="orders"></span>
-                                    {{ __('Orders') }}
-                                </a>
-                            </li>                            
-                            <li class="nav-item">
-                                <a class="nav-link {{ Request::is('admin/users*') ? 'active' : null }}" href="{{ route('admin.users.index') }}">
-                                    <span data-feather="users"></span>
-                                    {{ __('Users') }}
-                                </a>
-                            </li>    
-                            <li class="nav-item">
-                                <a class="nav-link {{ Request::is('admin/products*') ? 'active' : null }}" href="{{ route('admin.products.index') }}">
-                                    <span data-feather="products"></span>
-                                    {{ __('Products') }}
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link {{ Request::is('admin/categories*') ? 'active' : null }}" href="{{ route('admin.categories.index') }}">
-                                    <span data-feather="categories"></span>
-                                    {{ __('Categories') }}
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link {{ Request::is('admin/labels*') ? 'active' : null }}" href="{{ route('admin.labels.index') }}">
-                                    <span data-feather="labels"></span>
-                                    {{ __('Labels') }}
-                                </a>
-                            </li>  
-                            <li class="nav-item">
-                                <a class="nav-link {{ Request::is('admin/sliders*') ? 'active' : null }}" href="{{ route('admin.sliders.index') }}">
-                                    <span data-feather="sliders"></span>
-                                    {{ __('Sliders') }}
-                                </a>
-                            </li> 
-                            <li class="nav-item">
-                                <a class="nav-link {{ Request::is('admin/pages*') ? 'active' : null }}" href="{{ route('admin.pages.index') }}">
-                                    <span data-feather="pages"></span>
-                                    {{ __('Pages') }}
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link {{ Request::is('admin/newsletters*') ? 'active' : null }}" href="{{ route('admin.newsletters.index') }}">
-                                    <span data-feather="newsletters"></span>
-                                    {{ __('Newsletters') }}
-                                </a>
-                            </li>                                                                                                                                          
-                            <li class="nav-item">
-                                <a class="nav-link {{ Request::is('admin/statistics*') ? 'active' : null }}" href="{{ route('admin.statistics.index') }}">
-                                    <span data-feather="statistics"></span>
-                                    {{ __('Statistics') }}
-                                </a>
-                            </li>                            
-                            <li class="nav-item">
-                            <a class="nav-link {{ Request::is('admin/parameters') ? 'active' : null }}" href="{{ route('admin.parameters.index') }}">
-                                    <span data-feather="parameters"></span>
-                                    {{ __('Parameters') }}
-                                </a>
-                            </li>                                                                                 
-                        </ul>
-                    </div>
-                </nav> 
-
-                <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      
+          </nav>
+      
+          <div id="wrapper">
+      
+            <!-- Sidebar -->
+            <ul class="sidebar navbar-nav">
+                <li class="nav-item {{ Request::is('admin') ? 'active' : null }}">
+                    <a class="nav-link" href="{{ route('admin.dashboard') }}">
+                        Tableau de bord
+                    </a>
+                </li>
+                <li class="nav-item {{ Request::is('admin/orders*') ? 'active' : null }}">
+                    <a class="nav-link" href="{{ route('admin.orders.index') }}">
+                        Commandes
+                    </a>
+                </li>
+                <li class="nav-item {{ Request::is('admin/users*') ? 'active' : null }}">
+                    <a class="nav-link" href="{{ route('admin.users.index') }}">
+                        Utilisateurs
+                    </a>
+                </li>
+                <li class="nav-item {{ Request::is('admin/products*') ? 'active' : null }}">
+                    <a class="nav-link" href="{{ route('admin.products.index') }}">
+                        Produits
+                    </a>
+                </li>
+                <li class="nav-item {{ Request::is('admin/categories*') ? 'active' : null }}">
+                    <a class="nav-link" href="{{ route('admin.categories.index') }}">
+                        Catégories
+                    </a>
+                </li> 
+                <li class="nav-item {{ Request::is('admin/labels*') ? 'active' : null }}">
+                    <a class="nav-link" href="{{ route('admin.labels.index') }}">
+                        Etiquettes
+                    </a>
+                </li>
+                <li class="nav-item {{ Request::is('admin/sliders*') ? 'active' : null }}">
+                    <a class="nav-link" href="{{ route('admin.sliders.index') }}">
+                        Carrousels
+                    </a>
+                </li>
+                <li class="nav-item {{ Request::is('admin/pages*') ? 'active' : null }}">
+                    <a class="nav-link" href="{{ route('admin.pages.index') }}">
+                        Pages
+                    </a>
+                </li>
+                <li class="nav-item {{ Request::is('admin/newsletters*') ? 'active' : null }}">
+                    <a class="nav-link" href="{{ route('admin.newsletters.index') }}">
+                        Newsletters
+                    </a>
+                </li> 
+                <li class="nav-item {{ Request::is('admin/statistics') ? 'active' : null }}">
+                    <a class="nav-link" href="{{ route('admin.statistics.index') }}">
+                        Statistiques
+                    </a>
+                </li>
+                <li class="nav-item {{ Request::is('admin/parameters') ? 'active' : null }}">
+                    <a class="nav-link" href="{{ route('admin.parameters.index') }}">
+                        Paramètres
+                    </a>
+                </li>                                                                                                                               
+            </ul>
+      
+            <div id="content-wrapper">
+      
+                <div class="container-fluid">
                     @yield('content')
-                </main>               
+                </div>
+                 <!-- /.container-fluid -->
+      
+                <!-- Sticky Footer -->
+                <footer class="sticky-footer">
+                    <div class="container my-auto">
+                        <div class="copyright text-center my-auto">
+                            <span>Copyright © Your Website 2018</span>
+                        </div>
+                    </div>
+                </footer>
+      
+            </div>
+            <!-- /.content-wrapper -->
+      
+          </div>
+          <!-- /#wrapper -->
+      
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
+      
+          <!-- Logout Modal-->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <a class="btn btn-primary" href="login.html">Logout</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

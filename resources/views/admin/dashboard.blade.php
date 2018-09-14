@@ -8,6 +8,7 @@
 <div class="row">
     <div class="col-sm">
         <div class="card">
+            <div class="card-header">Commande en cours</div>
             <div class="card-body">
                 This is some text within a card body.
             </div>
@@ -15,6 +16,7 @@
     </div>
     <div class="col-sm">
         <div class="card">
+            <div class="card-header">Commande terminer</div>
             <div class="card-body">
                 This is some text within a card body.
             </div>
@@ -22,6 +24,7 @@
     </div>
     <div class="col-sm">
         <div class="card">
+            <div class="card-header">Header</div>
             <div class="card-body">
                 This is some text within a card body.
             </div>
@@ -29,6 +32,7 @@
     </div>
     <div class="col-sm">
         <div class="card">
+            <div class="card-header">Header</div>
             <div class="card-body">
                 This is some text within a card body.
             </div>

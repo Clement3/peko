@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Category;
+use App\Product;
+use App\Slider;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
@@ -14,6 +17,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home', ['data' => DB::table('sliders')->get() ,'products' => DB::table('products')->paginate(8)]);
+        $products = Product::paginate(8);
+        $slider  = Slider::get();
+        return view('home', ['data' => $slider ,'products' => $products]);    
     }
 }
