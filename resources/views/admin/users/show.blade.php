@@ -12,8 +12,16 @@
                 <h5 class="card-title">{{ $user->fullname() }}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">{{ $user->created_at }}</h6>
                 <p class="card-text">
-                    <strong>E-mail :</strong> {{ $user->email }}</br>
-                    <strong>Téléphone :</strong> {{ $user->phone }}
+                    <p><strong>E-mail :</strong> {{ $user->email }}<p>
+                    <strong>Adresse :</strong></br>
+                    <p>{{ $user->address['address'] }}</br>
+                    @if (isset($user->address))
+                    {{ $user->address->complement}}
+                    @else 
+                        Pas de complement dadresse
+                    @endif
+                    {{ $user->address['postal_code'] }}&nbsp;{{ $user->address['city'] }}</br></p>
+                    <strong>Téléphone :</strong> {{ $user->address['phone'] }}
                 </p>
 
                 <a href="{{ route('admin.users.active', $user) }}" class="card-link">

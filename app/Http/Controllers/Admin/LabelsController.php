@@ -109,6 +109,6 @@ class LabelsController extends Controller
         $label->delete();
 
         return redirect()->route('admin.labels.index')
-            ->with('success', 'Le label a bien été supprimé.');;
+            ->with('success', 'Le label a bien été supprimé.');
     }
 }
