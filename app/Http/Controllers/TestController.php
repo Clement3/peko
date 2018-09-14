@@ -18,9 +18,8 @@ class TestController extends Controller
     }
 
     public function componentTest(){
-        $cat = Category::get();
         $products = Product::paginate(8);
         $slider  = Slider::get();
-        return view('home', ['data' => $slider ,'products' => $products, 'cat' => $cat]);
+        return view('home', ['data' => $slider ,'products' => $products]);
     }
 }
