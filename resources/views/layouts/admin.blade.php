@@ -74,6 +74,11 @@
                         Utilisateurs
                     </a>
                 </li>
+                <li class="nav-item {{ Request::is('admin/contacts*') ? 'active' : null }}">
+                    <a class="nav-link" href="{{ route('admin.contacts.index') }}">
+                        Messages
+                    </a>
+                </li>
                 <li class="nav-item {{ Request::is('admin/products*') ? 'active' : null }}">
                     <a class="nav-link" href="{{ route('admin.products.index') }}">
                         Produits
