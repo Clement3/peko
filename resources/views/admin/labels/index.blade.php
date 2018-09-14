@@ -12,27 +12,22 @@
         <thead>
             <tr>
                 <th scope="col"># ID</th>
-                <th scope="col">Name</th>
-                <th scope="col">Actif</th>
-                <th scope="col">Création</th>
-                <th scope="col">Mis à jour</th>
+                <th scope="col">Descriptif</th>
+                <th scope="col">Recette</th>
+                <th scope="col">Image</th>
+                <th scope='col'>Créer à :</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($labels as $label)
             <tr>
                 <th scope="row">{{ $label->id }}</th>
-                <td>{{ $label->name }}</td>
-                <td>{{ $label->created_at }}</td>
-                <td>{{ $label->updated_at }}</td>
+                <td>{{ $label->body}}</td>
+                <td>{{ $label->recipe}}</td>
+                <td>{{ $label->picture}}</td>
+                <td>{{ $label->created_at}}</td>
+            </td>
                 <td>
-                    @if ($label->is_active) 
-                    <span class="badge badge-info">Oui</span> 
-                    @else
-                    <span class="badge badge-warning">Non</span>
-                    @endif
-                </td>
-                
                     <a href="{{ route('admin.labels.show', $label) }}">{{ __('View') }}</a>
                     <a href="{{ route('admin.labels.edit', $label) }}">{{ __('Edit') }}</a>
                     <a
