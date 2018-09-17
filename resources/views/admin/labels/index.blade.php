@@ -24,10 +24,18 @@
                 <th scope="row">{{ $label->id }}</th>
                 <td>{{ $label->body}}</td>
                 <td>{{ $label->recipe}}</td>
-                <td>{{ $label->picture}}</td>
+                <td>
+                    @if ($label->picture)
+                    <img src="{{ asset('storage/'.$label->picture) }}" 
+                        width="50px" height="50px">
+                    @else
+                    Pas d'image
+                    @endif
+                </td>
                 <td>{{ $label->created_at}}</td>
             </td>
                 <td>
+                    <a href="{{ route('admin.labels.create', $label) }}">{{ __('Create') }}</a>
                     <a href="{{ route('admin.labels.show', $label) }}">{{ __('View') }}</a>
                     <a href="{{ route('admin.labels.edit', $label) }}">{{ __('Edit') }}</a>
                     <a
