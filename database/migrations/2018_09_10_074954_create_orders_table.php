@@ -16,6 +16,7 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
             $table->boolean('is_received')->defautl('false');
+            $table->boolean('is_paid')->default('false');
             $table->float('price');
             $table->timestamps();
             $table->unsignedInteger('user_id');

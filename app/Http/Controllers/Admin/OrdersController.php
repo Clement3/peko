@@ -20,6 +20,10 @@ class OrdersController extends Controller
         return view('admin/orders/index', ['orders' => $orders]);
     }
 
+    public function show(Order $order)
+    {
+        return view('admin/orders/show', ['order' => $order]);
+    }
   
     /**
      * Store a newly created resource in storage.
