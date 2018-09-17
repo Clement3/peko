@@ -45,7 +45,7 @@ class OrdersController extends Controller
      */
     public function edit(Order $order)
     {
-        return view('admin/orders/edit', ['orders' => $orders]);
+        return view('admin/orders/edit', ['orders' => $order]);
     }
 
     /**

@@ -13,7 +13,8 @@
             @include('partials/_alert')
                 <div class="card-columns">
                     @foreach($orders as $order)
-                    <div class="card" style="width: 18rem;">
+                    <a href="#" class="text-dark cmd_modal">
+                    <div class="card">
                         <div class="card-header">
                             Commande n°{{ $order->id }}
                         </div>
@@ -45,10 +46,13 @@
                             </table>
                         </div>
                     </div>
+                    </a>
                     @endforeach
                 </div>
             </div>
         </div>
     </div>
 </div>
+@component('test/dashboard_modal')
+@endcomponent
 @endsection

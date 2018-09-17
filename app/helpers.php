@@ -22,7 +22,7 @@ if(!function_exists('facturePrice')){
 
 if(!function_exists('addTva')){
     function addTva($price){
-        $tva = 19.6;
+        $tva = 20;
         $calc = ($tva/100)*$price;
         $result = $price+$calc;
         return $result;
