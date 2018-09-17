@@ -13,6 +13,7 @@
     <script src="{{ asset('js/admin.js') }}" defer></script>
 
     <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
@@ -23,7 +24,8 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+        <nav class="navbar sticky-top navbar-expand navbar-dark bg-dark static-top">
+            <a class="sidebar-toggler mr-3" href="#"><i class="material-icons text-white align-middle">menu</i></a>
             <a class="navbar-brand mr-1" href="index.html">Administration</a>
       
             <!-- Navbar Search -->
@@ -58,7 +60,8 @@
           <div id="wrapper">
       
             <!-- Sidebar -->
-            <ul class="sidebar navbar-nav">
+            <ul id="sidebar" style="min-width: 250px; max-width: 250px; min-height: 100vh;" class="sidebar navbar-nav">
+                <div id="scrollable">
                 <li class="nav-item {{ Request::is('admin') ? 'active' : null }}">
                     <a class="nav-link" href="{{ route('admin.dashboard') }}">
                         Tableau de bord
@@ -118,7 +121,8 @@
                     <a class="nav-link" href="{{ route('admin.parameters.index') }}">
                         Paramètres
                     </a>
-                </li>                                                                                                                               
+                </li>    
+                </div>                                                                                                                           
             </ul>
       
             <div id="content-wrapper">
