@@ -17,6 +17,7 @@ class ContactsTableSeeder extends Seeder
                 'fullname' => "Contact ".$i,
                 'object' => "sujet de .. ",
                 'message' => "lorem lorem lorem",
+                'is_read' => 1,
                 'created_at' => Date('Y-m-d H:i:s')
             ]);            
         }
