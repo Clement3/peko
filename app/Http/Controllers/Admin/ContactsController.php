@@ -28,7 +28,13 @@ class ContactsController extends Controller
      */    
     public function show(Contact $contact)
     {
-        return view('admin/contacts/show', ['contact' => $contact]);
+        $contact->update([
+            'is_read' => true
+        ]);
+
+        return view('admin/contacts/show', [
+            'contact' => $contact
+        ]);
     }
 
     /**

@@ -15,9 +15,10 @@ class ContactsTableSeeder extends Seeder
         for ($i = 1; $i <= 5; $i++) {
             DB::table('contacts')->insert([
                 'fullname' => "Contact ".$i,
-                'object' => "sujet de .. ",
+                'object' => 'sujet',
                 'message' => "lorem lorem lorem",
-                'is_read' => 1,
+                'email' => 'email'.$i.'@email.fr',
+                'is_read' => mt_rand(0,1),
                 'created_at' => Date('Y-m-d H:i:s')
             ]);            
         }

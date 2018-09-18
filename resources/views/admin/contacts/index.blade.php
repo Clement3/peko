@@ -12,9 +12,10 @@
         <thead>
             <tr>
                 <th scope="col"># ID</th>
-                <th scope="col">Nom :</th>
-                <th scope="col">Objet :</th>
-                <th scope="col">Reçu le : </th>
+                <th scope="col">Destinataire</th>
+                <th scope="col">Objet:</th>
+                <th scope="col">Date réception : </th>
+                <th scope="col">Status </th>
             </tr>
         </thead>
         <tbody>
@@ -23,23 +24,22 @@
                 <th scope="row">{{ $contact->id }}</th>
                 <td>{{ $contact->fullname }}</td>
                 <td>{{ $contact->object }}</td>
-                <td>{{ $contact->message }}</td>
                 <td>{{ $contact->created_at }}</td>
                                 
                 <td>
-                    @if ($contact->is_received) 
-                    <span class="badge badge-info">Terminé</span> 
+                    @if ($contact->is_read) 
+                    <span class="badge badge-info">lu</span> 
                     @else
-                    <span class="badge badge-warning">En Cours</span>
+                    <span class="badge badge-warning">non-lu</span>
                     @endif
                 </td>
                 <td>
-                    <a href="{{ route('admin.contacts.show', $contact) }}">{{ __('View') }}</a>
+                    <a href="{{ route('admin.contacts.show', $contact) }}">{{ __('Voir') }}</a>
                     <a
                         href="{{ route('admin.contacts.destroy', $contact) }}"
                         onclick="event.preventDefault();
                         document.getElementById('delete-form').submit();">
-                        {{ __('Delete') }}
+                        {{ __('Supprimer') }}
                     </a>
    
                     <form id="delete-form" action="{{ route('admin.contacts.destroy', $contact) }}" method="POST" style="display: none;">
